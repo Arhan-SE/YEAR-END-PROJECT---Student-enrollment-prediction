@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #f4f6f5;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #0b2a4a;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #064e3b, #0f766e);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.logo{
+    font-size: 16px;
+    font-weight: 500;
+    font-weight: bold;
+    display: flex;
+   align-items: center;
+}
+
+/* Main */
+.main {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.main h1 {
+    font-size: 28px;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #6b7280;
+    margin-bottom: 40px;
+}
+
+/* Result Card */
+.result-card {
+    background: white;
+    width: 65%;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.result-text {
+    font-size: 16px;
+    color: #374151;
+    line-height: 1.6;
+}
+
+.prediction-number {
+    margin-top: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #0f766e;
+}
+
+/* Graph Card */
+.graph-card {
+    background: white;
+    width: 65%;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.graph-card h2 {
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-top: 5px;
+    text-decoration: none;
+    color: #0f766e;
+    font-weight: 600;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Enrollment Project</title>
+        <link rel="styleSheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class="header">
+        <img src="images/whiteLOGO.png" alt="College Logo" height="55px" width="300px">
+        <div class="logo"><h3>Enrollment Prediction Analytic</h3></div>
+        </div>
+
+            <div class="main">           
+                <h1>Student Enrollment Prediction Model</h1>
+                <p class="subtitle">Enter academic year and subject combination</p>
+                <p class="subtitle">This prediction model is designed only for <b>Science Block</b> departments.</p>
+
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="graph-header">
+                            <h2>Total Enrollment Trend</h2>
+                        </div>
+                        <canvas id="totalTrendChart"></canvas>
+                    </div>
+
+                    <div class="insight-card">
+                        <div class="graph-header">
+                            <h2>Enrollment Trend by Department</h2>
+                        </div>
+                        <canvas id="deptTrendChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="row">
+                <div class="form-group">
+                    <label>ENTER ACADEMIC YEAR</label><br><br>
+                    <select id="academicYear">
+                        <option>2026</option>
+                        <option>2027</option>
+                        <option>2028</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>SELECT DEPARTMENT</label><br><br>
+                    <select id="department">
+                        <option>Zoology</option>
+                        <option>Data Science</option>
+                        <option>Psychology</option>
+                        <option>Chemistry</option>
+                        <option>Computer Science</option>
+                        <option>Biotechnology</option>
+                        <option>Microbiology</option>
+                        <option>Statistics</option>
+                        <option>Visual Communication</option>
+                        <option>Botany</option>
+                        <option>Food Science</option>
+                        <option>Mathematics</option>
+                        <option>Electronics</option>
+                        <option>Biochemistry</option>
+                        <option>Economics</option>
+                        <option>Physics</option>
+                        <option>Computer Animation</option>
+                    </select>
+                </div>
+                </div>
+
+                <button id="generatePrediction" type="button">GENERATE PREDICTION</button>
+
+                <div id="resultsSection" class="results hidden">
+                    <div class="result-card">
+                        <p class="result-text">
+                            Based on the academic year <strong id="resultYear">—</strong> and the selected
+                            department <strong id="resultCourse">—</strong>, the predicted student enrollment is likely to be:
+                        </p>
+                        <div class="prediction-number">
+                           <span id="resultValue">Pick an academic year and department to see predictions.</span>
+                        </div>
+                    </div>
+
+                    <div class="graph-card">
+                        <div class="graph-header">
+                            <h2>Enrollment Prediction Trend</h2>
+                            <div class="pill">CSV-driven</div>
+                        </div>
+                        <canvas id="predictionChart"></canvas>
+                    </div>
+
+                    <div class="graph-card">
+                        <div class="graph-header">
+                            <h2>Student Enrollment: 2028 Forecast (Ensemble ARIMA + ETS)</h2>
+                            <div class="pill">Forecast 2026-2028</div>
+                        </div>
+                        <div class="graph-with-legend">
+                            <canvas id="forecastChart"></canvas>
+                            <div id="forecastLegend" class="legend-scroll"></div>
+                        </div>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Limitations & Conclusion</h3>
+                        <ul>
+                            <li><strong>Historical Depth:</strong> With only 5 years of data (2021–2025), the model cannot account for long-term 10-year academic cycles.</li>
+                            <li><strong>External Disruptions:</strong> The model is purely quantitative; it cannot predict "black swan" events such as sudden changes in government education policy or the introduction of a new competitor course.</li>
+                            <li><strong>Cold Start Sensitivity:</strong> For departments that recently hit zero (like Computer Animation), the model effectively "shuts down" the forecast. It cannot predict a department "re-opening" without manual intervention.</li>
+                        </ul>
+                        <p><strong>Conclusion:</strong> For small, highly fluctuating datasets like college enrollment, a Multi-Model Ensemble Approach is significantly superior to standard Machine Learning. By combining ARIMA and ETS, we created a system that is sensitive enough to catch new trends (like the Data Science boom) but stable enough to ignore random yearly noise, providing a balanced roadmap for administrative decision-making through 2028.</p>
+                        <p>The use of Ensemble forecasting reduced our overall error rate by roughly 8% compared to a single ARIMA model.</p>
+                    </div>
+                </div>
+
+            </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script src="predict.js"></script>
+            
+                
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
