@@ -25,10 +25,10 @@ const htmlLegendPlugin = {
 };
 
 // Shared canvas sizing helper to prevent runaway reflow
-function setCanvasSize(canvas, height = 360) {
+function setCanvasSize(canvas, height = 320) {
     if (!canvas) return;
-    const width = canvas.parentElement?.clientWidth || canvas.clientWidth || 520;
-    canvas.width = width;
+    canvas.style.width = '100%';
+    canvas.style.height = `${height}px`;
     canvas.height = height;
 }
 
@@ -74,7 +74,7 @@ function buildChart(departmentRows) {
         chartInstance.destroy();
     }
 
-    setCanvasSize(canvas, 360);
+    setCanvasSize(canvas, 320);
     chartInstance = new Chart(canvas.getContext('2d'), {
         type: 'line',
         data: {
@@ -95,7 +95,9 @@ function buildChart(departmentRows) {
             }]
         },
         options: {
-            responsive: false,
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 2.4,
             animation: false,
             plugins: {
                 legend: { display: false },
@@ -181,16 +183,20 @@ function buildForecastChart(rows) {
     });
 
     if (forecastChart) forecastChart.destroy();
-    setCanvasSize(canvas, 420);
+    setCanvasSize(canvas, 340);
         forecastChart = new Chart(canvas.getContext('2d'), {
             type: 'line',
             data: { labels: years, datasets },
             options: {
-                responsive: false,
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 2.2,
                 animation: false,
+                layout: { padding: { right: 12 } },
                 plugins: {
                     legend: legendContainer ? { display: false } : {
-                        position: 'right',
+                        position: 'bottom',
+                        align: 'start',
                         labels: { boxWidth: 12, padding: 12, font: { size: 11 } }
                 },
                 htmlLegend: legendContainer ? { containerID: 'forecastLegend' } : undefined,
@@ -245,7 +251,7 @@ function buildLandingCharts() {
 
     if (totalCtx) {
         if (totalTrendChart) totalTrendChart.destroy();
-        setCanvasSize(totalCanvas, 260);
+        setCanvasSize(totalCanvas, 220);
         totalTrendChart = new Chart(totalCtx, {
             type: 'line',
             data: {
@@ -262,7 +268,9 @@ function buildLandingCharts() {
                 }]
             },
             options: {
-                responsive: false,
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 2.2,
                 animation: false,
                 plugins: {
                     legend: { display: false },
@@ -283,7 +291,7 @@ function buildLandingCharts() {
 
     if (deptCtx) {
         if (deptTrendChart) deptTrendChart.destroy();
-        setCanvasSize(deptCanvas, 260);
+        setCanvasSize(deptCanvas, 220);
         const palette = [
             '#0ea5e9','#f97316','#22c55e','#ef4444','#8b5cf6','#f59e0b','#14b8a6',
             '#94a3b8','#e11d48','#10b981','#6366f1','#16a34a','#eab308','#64748b',
@@ -307,11 +315,15 @@ function buildLandingCharts() {
                 datasets
             },
             options: {
-                responsive: false,
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 2.2,
+                layout: { padding: { right: 12 } },
                 animation: false,
                 plugins: {
                     legend: {
-                        position: 'right',
+                        position: 'bottom',
+                        align: 'start',
                         labels: {
                             boxWidth: 12,
                             padding: 12,

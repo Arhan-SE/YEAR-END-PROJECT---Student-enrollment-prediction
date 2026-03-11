@@ -140,6 +140,20 @@ button:hover {
   box-shadow: 0 16px 38px rgba(15,23,42,0.08);
   border: 1px solid rgba(15,118,110,0.08);
   overflow: hidden;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Allow chart legends to render outside the canvas area (prevents label clipping) */
+.graph-card {
+  overflow: visible;
+  width: 100%;
+}
+
+/* Add breathing room on the right to avoid legend clipping against container edge */
+.graph-card .graph-with-legend {
+  padding-right: 12px;
 }
 
 .result-card .result-text {
@@ -176,16 +190,18 @@ button:hover {
   display: block;
 }
 
+/* Stack forecast chart legend under the chart (avoid side-by-side clipping) */
 .graph-with-legend {
-  display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 16px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
 }
 
 @media (max-width: 960px) {
   .graph-with-legend {
-    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
 
@@ -258,6 +274,7 @@ button:hover {
   border: 1px solid rgba(15,118,110,0.08);
   color: #0f172a;
   line-height: 1.6;
+  text-align: left;
 }
 
 .note-card h3 {
@@ -273,4 +290,25 @@ button:hover {
 
 .note-card li {
   margin-bottom: 8px;
+}
+
+/* Ensure long legend labels wrap instead of being clipped */
+#forecastLegend {
+  overflow: visible;
+  max-height: 260px;
+}
+
+#forecastLegend div {
+  white-space: normal;
+}
+
+/* Widen legend text hitbox so long names don't clip near chart edge */
+.graph-with-legend {
+  grid-template-columns: 1fr 280px;
+}
+
+@media (max-width: 1024px) {
+  .graph-with-legend {
+    grid-template-columns: 1fr;
+  }
 }
