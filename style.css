@@ -134,15 +134,16 @@ button:hover {
 
 .result-card, .graph-card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 28px;
+  border-radius: 14px;
+  padding: 24px;
   text-align: left;
-  box-shadow: 0 16px 38px rgba(15,23,42,0.08);
-  border: 1px solid rgba(15,118,110,0.08);
+  box-shadow: 0 12px 28px rgba(15,23,42,0.06);
+  border: 1px solid rgba(15,118,110,0.05);
   overflow: hidden;
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
 
 /* Allow chart legends to render outside the canvas area (prevents label clipping) */
@@ -154,6 +155,48 @@ button:hover {
 /* Add breathing room on the right to avoid legend clipping against container edge */
 .graph-card .graph-with-legend {
   padding-right: 12px;
+}
+
+/* Chart.js external tooltip container for scrollable legend-like popup */
+.chartjs-tooltip {
+  position: absolute;
+  background: rgba(31, 41, 55, 0.95);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  pointer-events: auto;
+  transform: translate(-50%, -100%);
+  max-height: 180px;
+  overflow-y: auto;
+  min-width: 220px;
+  z-index: 20;
+}
+
+.chartjs-tooltip-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chartjs-tooltip .tooltip-title {
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.chartjs-tooltip .tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.chartjs-tooltip .tooltip-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.2);
+  flex-shrink: 0;
 }
 
 .result-card .result-text {
@@ -197,6 +240,7 @@ button:hover {
   gap: 12px;
   align-items: flex-start;
   width: 100%;
+  position: relative;
 }
 
 @media (max-width: 960px) {
@@ -208,19 +252,226 @@ button:hover {
 .insights-grid {
   margin: 28px 0 38px 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: minmax(320px, 0.85fr) minmax(320px, 1.15fr);
   gap: 18px;
+  justify-items: stretch;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .insight-card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 20px 22px 24px;
+  border-radius: 14px;
+  padding: 10px 10px 12px;
   text-align: left;
-  box-shadow: 0 16px 38px rgba(15,23,42,0.08);
-  border: 1px solid rgba(15,118,110,0.08);
+  box-shadow: 0 12px 28px rgba(15,23,42,0.06);
+  border: 1px solid rgba(15,118,110,0.05);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.insight-card img:not(.insight-img-large) {
+  width: 100%;
+  max-width: none;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(15,23,42,0.12);
+}
+
+.insight-card img.insight-img-large {
+  width: 100%;
+  max-width: none;
+  display: block;
+  margin: 4px auto 6px auto;
+  border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(15,23,42,0.12);
+}
+
+/* Constrain hero insight images to avoid excess white space */
+.insights-grid .insight-card img {
+  width: 100% !important;
+  height: auto;
+  max-height: 460px;
+  object-fit: contain;
+}
+
+.site-footer {
+  margin: 64px auto 40px;
+  width: 100%;
+  padding: 32px 48px;
+  background: linear-gradient(135deg, #ffffff 0%, #f9fbff 60%, #f7fff9 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(15,118,110,0.08);
+  box-shadow: 0 22px 46px rgba(15,23,42,0.08);
+  color: #0f172a;
+  text-align: left;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid rgba(15,118,110,0.12);
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.footer-brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 2px solid #0f766e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.footer-brand-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.footer-brand-sub {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+  color: #ffffff;
+  font-weight: 800;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 14px 28px rgba(15,23,42,0.18);
+  transition: all 0.2s ease;
+  font-size: 18px;
+}
+
+.footer-icon:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #0f766e 0%, #22c55e 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 14px 30px rgba(34,197,94,0.25);
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px 22px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.footer-block-right {
+  justify-self: end;
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .footer-block-right {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+.footer-block h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  color: #0f172a;
+}
+
+.footer-link-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 12px;
+  margin-bottom: 6px;
+  padding: 4px 0;
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: 0.25px;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #0f766e;
+  text-decoration: underline;
+}
+
+.footer-email {
+  margin: 6px 0 0 0;
+  color: #374151;
+  font-weight: 700;
+  display: inline-block;
+  padding: 2px 0;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid rgba(15,118,110,0.12);
+  padding-top: 14px;
+  color: #4b5563;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .insights-grid .insight-card img {
+    height: 420px;
+  }
+}
+
+.graph-card img.prediction-img {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
 }
 
 .insight-card::after {

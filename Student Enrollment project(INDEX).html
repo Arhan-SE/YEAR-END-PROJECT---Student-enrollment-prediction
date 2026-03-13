@@ -14,22 +14,20 @@
 
             <div class="main">           
                 <h1>Student Enrollment Prediction Model</h1>
-                <p class="subtitle">Enter academic year and subject combination</p>
-                <p class="subtitle">This prediction model is designed only for <b>Science Block</b> departments.</p>
 
                 <div class="insights-grid">
                     <div class="insight-card">
                         <div class="graph-header">
                             <h2>Total Enrollment Trend</h2>
                         </div>
-                        <canvas id="totalTrendChart"></canvas>
+                        <img src="images/data_analysis.jpeg" alt="Total Enrollment Trend" style="width:100%;border-radius:12px;display:block;" />
                     </div>
 
                     <div class="insight-card">
                         <div class="graph-header">
                             <h2>Enrollment Trend by Department</h2>
                         </div>
-                        <canvas id="deptTrendChart"></canvas>
+                        <img class="insight-img-large" src="images/depth-wise-prediction.jpeg" alt="Enrollment Trend by Department" />
                     </div>
                 </div>
 
@@ -83,20 +81,15 @@
                     <div class="graph-card">
                         <div class="graph-header">
                             <h2>Enrollment Prediction Trend</h2>
-                            <div class="pill">CSV-driven</div>
                         </div>
                         <canvas id="predictionChart"></canvas>
                     </div>
 
                     <div class="graph-card">
                         <div class="graph-header">
-                            <h2>Student Enrollment: 2028 Forecast (Ensemble ARIMA + ETS)</h2>
-                            <div class="pill">Forecast 2026-2028</div>
+                            <h2>Student Enrollment</h2>
                         </div>
-                        <div class="graph-with-legend">
-                            <canvas id="forecastChart"></canvas>
-                            <div id="forecastLegend" class="legend-scroll"></div>
-                        </div>
+                        <img class="prediction-img" src="images/after_pridiction.jpeg" alt="Student Enrollment" />
                     </div>
 
                     <div class="note-card">
@@ -112,6 +105,41 @@
                 </div>
 
             </div>
+
+            <footer class="site-footer">
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <div>
+                            <div class="footer-brand-title">Branding / Credit</div>
+                            <div class="footer-brand-sub">
+                                Misha ilham<br>
+                                St. Aloysius (2023-2026)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-block">
+                        <h4>Reports / Feedback</h4>
+                        <div class="footer-link-row">
+                            <a class="footer-link" href="mailto:mishailham55@gmail.com?subject=Enrollment%20Prediction%20-%20Bug%20Report">Report a bug</a>
+                            <a class="footer-link" href="mailto:mishailham55@gmail.com?subject=Enrollment%20Prediction%20-%20Contact">Contact</a>
+                        </div>
+                    </div>
+                    <div class="footer-block footer-block-right">
+                        <div class="footer-link-row">
+                            <a class="footer-link" href="https://www.linkedin.com/in/misha-ilham-9113ba344" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+                            <a class="footer-link" href="https://www.instagram.com/msh_ilhamm" target="_blank" rel="noreferrer noopener">Instagram</a>
+                        </div>
+                        <span class="footer-email">mishailham55@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <span class="footer-copy">© <span id="copyrightYear"></span> Misha Ilham</span>
+                </div>
+            </footer>
 
                 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
